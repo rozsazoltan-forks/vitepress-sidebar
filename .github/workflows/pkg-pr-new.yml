@@ -5,17 +5,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+      - run: corepack enable
       - uses: actions/setup-node@v6
         with:
           node-version: 26
           cache: 'pnpm'
-      - name: Checkout code
-        uses: actions/checkout@v6
-      - run: |
-          corepack enable pnpm
-          corepack use pnpm@latest
       - name: Install dependencies
         run: pnpm install
       - name: Build
         run: pnpm build
-      - run: pnpm dlx pkg-pr-new publish
+      - run: pnpm exec pkg-pr-new publish --commentWithSha
