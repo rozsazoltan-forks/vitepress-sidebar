@@ -1,6 +1,6 @@
 // Get a single value of type T from Frontmatter
 // Defaults to defaultValue
-import { readFileSync } from 'fs';
+import { readFileSync, statSync } from 'fs';
 import matter from 'gray-matter';
 import { capitalizeEachWords, capitalizeFirst } from 'qsu';
 import type {
@@ -51,6 +51,20 @@ export function getOrderFromFrontmatter(filePath: string, defaultOrder: number):
 
 export function getDateFromFrontmatter(filePath: string): string {
   return getValueFromFrontmatter<string>(filePath, 'date', '0001-01-01');
+}
+
+export function getDateFromFile(filePath: string): number {
+  try {
+    const fileStats = statSync(filePath);
+
+    if (!fileStats.mtime) {
+      return 0;
+    }
+
+    return Math.floor(new Date(fileStats.mtime).getTime() / 1000);
+  } catch {
+    return 0;
+  }
 }
 
 export function getExcludeFromFrontmatter(

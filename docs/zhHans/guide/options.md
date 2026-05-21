@@ -113,7 +113,7 @@ order: 2
 - Type: `boolean`
 - Default: `false`
 
-如果值为 `true`，则显示带有 `.md` 文件中 `h1` 标题内容的标题。如果文件中不存在 `h1` 标题，则显示 `Unknown`。
+如果值为 `true`，则显示带有 `.md` 文件中 `h1` 标题内容的标题。 如果文件中不存在 `h1` 标题，则像以前一样用文件名代替。
 
 默认菜单项按文件夹树顺序排序,因此如果您想按更改后的菜单名称重新排序,请将`sortMenusByName`选项设置为`true`。
 
@@ -205,6 +205,13 @@ name: This is frontmatter title value.
 - Default: `false`
 
 按 frontmatter 的 `order` 属性对菜单项排序。对于每个文件夹，按 `order` 属性的值（数字）升序排序，如果 `sortMenusOrderByDescending` 选项为 `true`，则按降序排序。如果 `order` 属性的值不是数字或不存在，则 `order` 会被判定为 `0`。
+
+## `sortMenusByFileModifyDate`
+
+- Type: `boolean`
+- Default: `false`
+
+根据文件的修改日期属性对菜单项进行排序。 (如果`sortMenusOrderByDescending`为`true`,则按日期降序).
 
 ## `sortMenusByFrontmatterDate`
 

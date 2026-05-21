@@ -1,8 +1,10 @@
 # Changelog
 
-## 1.33.3 (2026-05-21)
+## 1.34.0 (2026-05-21)
 
 - Fix the `capitalize` option behaves in such a way that it ignores the prefix (#231)
+- If the `h1` heading in the Markdown file cannot be retrieved, the file name is used instead of `Unknown`.
+- Add `sortMenusByFileModifyDate` option (#229)
 
 ## 1.33.2 (2026-05-06)
 

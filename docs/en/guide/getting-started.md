@@ -167,15 +167,15 @@ export default defineConfig(
     // followSymlinks: false,
     //
     // ============ [ GROUPING ] ============
-    // collapsed: true,
+    // collapsed: false,
     // collapseDepth: 2,
     // rootGroupText: 'Contents',
     // rootGroupLink: 'https://github.com/jooy2',
     // rootGroupCollapsed: false,
     //
     // ============ [ GETTING MENU TITLE ] ============
-    // useTitleFromFileHeading: true,
-    // useTitleFromFrontmatter: true,
+    // useTitleFromFileHeading: false,
+    // useTitleFromFrontmatter: false,
     // useFolderLinkFromIndexFile: false,
     // useFolderTitleFromIndexFile: false,
     // frontmatterTitleFieldName: 'title',
@@ -195,8 +195,8 @@ export default defineConfig(
     // includeFolderIndexFile: false,
     //
     // ============ [ STYLING MENU TITLE ] ============
-    // hyphenToSpace: true,
-    // underscoreToSpace: true,
+    // hyphenToSpace: false,
+    // underscoreToSpace: false,
     // capitalizeFirst: false,
     // capitalizeEachWords: false,
     // keepMarkdownSyntaxFromTitle: false,
@@ -210,6 +210,7 @@ export default defineConfig(
     // sortMenusByFileDatePrefix: false,
     // sortMenusByFrontmatterOrder: false,
     // frontmatterOrderDefaultValue: 0,
+    // sortMenusByFileModifyDate: false,
     // sortMenusByFrontmatterDate: false,
     // sortMenusOrderByDescending: false,
     // sortMenusOrderNumericallyFromTitle: false,

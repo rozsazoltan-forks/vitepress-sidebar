@@ -8,6 +8,7 @@ import {
   debugPrint,
   deepDeleteKey,
   generateNotTogetherMessage,
+  getDateFromFile,
   getDateFromFrontmatter,
   getExcludeFromFrontmatter,
   getOrderFromFrontmatter,
@@ -204,6 +205,11 @@ function generateSidebarItem(
               ? {
                   date: getDateFromFrontmatter(childItemPath)
                 }
+              : {}),
+            ...(options.sortMenusByFileModifyDate
+              ? {
+                  date: getDateFromFile(childItemPath)
+                }
               : {})
           };
         }
@@ -236,6 +242,11 @@ function generateSidebarItem(
           ...(options.sortMenusByFrontmatterDate
             ? {
                 date: getDateFromFrontmatter(childItemPath)
+              }
+            : {}),
+          ...(options.sortMenusByFileModifyDate
+            ? {
+                date: getDateFromFile(childItemPath)
               }
             : {})
         };
@@ -273,7 +284,7 @@ function generateSidebarItem(
     deepDeleteKey(sidebarItems, 'order');
   }
 
-  if (options.sortMenusByFrontmatterDate) {
+  if (options.sortMenusByFrontmatterDate || options.sortMenusByFileModifyDate) {
     sidebarItems = sortByObjectKey({
       arr: sidebarItems,
       key: 'date',

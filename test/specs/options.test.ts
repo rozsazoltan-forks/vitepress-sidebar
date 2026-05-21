@@ -1,6 +1,9 @@
 import assert from 'assert';
 import { describe, it } from 'node:test';
 import { generateSidebar } from '../../dist';
+import { utimes } from 'node:fs/promises';
+import { joinFilePath } from 'qsu/node';
+import { platform } from 'node:os';
 
 const TEST_DIR_BASE = 'test/resources';
 
@@ -878,6 +881,49 @@ describe('Test: APIs', () => {
     );
   });
 
+  it('API: sortMenusByFileModifyDate', async () => {
+    const targetDir = `${TEST_DIR_BASE}/modify-date`;
+    const files = ['ddd.md', 'aaa.md', 'ccc.md', 'bbb.md'];
+
+    let minute = 10;
+
+    for (const file of files) {
+      const newDate = new Date(`2026-01-01T10:${minute}:00`);
+
+      await utimes(
+        joinFilePath(platform() === 'win32', process.cwd(), targetDir, file),
+        newDate,
+        newDate
+      );
+      minute += 1;
+    }
+
+    assert.deepEqual(
+      generateSidebar({
+        documentRootPath: targetDir,
+        sortMenusByFileModifyDate: true
+      }),
+      [
+        {
+          text: 'ddd',
+          link: '/ddd'
+        },
+        {
+          text: 'aaa',
+          link: '/aaa'
+        },
+        {
+          text: 'ccc',
+          link: '/ccc'
+        },
+        {
+          text: 'bbb',
+          link: '/bbb'
+        }
+      ]
+    );
+  });
+
   it('API: rootGroup related configurations (A)', () => {
     assert.deepEqual(
       generateSidebar({
@@ -1443,8 +1489,7 @@ describe('Test: APIs', () => {
         capitalizeEachWords: true,
         removePrefixAfterOrdering: true,
         prefixSeparator: /[0-9]+-/g,
-        hyphenToSpace: true,
-        debugPrint: true
+        hyphenToSpace: true
       }),
       [
         {

@@ -113,7 +113,7 @@ e.g. `/`, `/path/sub-path`, `/guide/`...
 - Type: `boolean`
 - Default: `false`
 
-값이 `true`이면 `.md` 파일의 `h1` 제목 내용이 포함된 제목을 표시합니다. 파일에 `h1` 제목이 존재하지 않으면 `Unknown`으로 표시됩니다.
+값이 `true`이면 `.md` 파일의 `h1` 제목 내용이 포함된 제목을 표시합니다. 파일에 `h1` 제목이 존재하지 않으면 기존과 같이 파일 이름으로 대체합니다.
 
 기본 메뉴 항목은 폴더 트리 순서로 정렬되므로 변경된 메뉴 이름으로 다시 정렬하려면 `sortMenusByName` 옵션을 `true`로 설정합니다.
 
@@ -205,6 +205,13 @@ name: 이 것은 Frontmatter의 제목값입니다.
 - Default: `false`
 
 Frontmatter의 `order` 속성을 기준으로 메뉴 항목을 정렬합니다. 각 폴더에 대해 `order` 속성의 값(숫자)을 오름차순으로 정렬하거나, `sortMenusOrderByDescending` 옵션이 `true`인 경우 내림차순으로 정렬합니다. `order` 값이 숫자가 아니거나 존재하지 않는 경우 `order`는 `0`으로 판단됩니다.
+
+## `sortMenusByFileModifyDate`
+
+- Type: `boolean`
+- Default: `false`
+
+파일의 수정된 날짜 속성을 기준으로 메뉴 항목을 정렬합니다. (`sortMenusOrderByDescending` 옵션이 `true`인 경우 내림차순).
 
 ## `sortMenusByFrontmatterDate`
 
@@ -406,7 +413,7 @@ root/  <---------- depth: 1 / scan: yes
 
 이 옵션은 접두사를 제거하기 위해 `removePrefixAfterOrdering` 옵션과 함께 사용할 때만 사용할 수 있습니다.
 
-추출된 메뉴 텍스트에서 지정된 문자 수(하나 이상)의 첫 부분을 제거합니다. 예를 들어 메뉴 이름이 `1. Text`이고 `prefixSeparator` 값을 `. '로 설정하면 결과는 `Text`가 됩니다.
+추출된 메뉴 텍스트에서 지정된 문자 수(하나 이상)의 첫 부분을 제거합니다. 예를 들어 메뉴 이름이 `1. Text`이고 `prefixSeparator` 값을 `. `로 설정하면 결과는 `Text`가 됩니다.
 
 정규식을 사용할 수도 있습니다. 정규식과 일치하는 값은 제거됩니다. 예를 들어 `2024-01-01-hello`에서 문자열 앞의 날짜를 제거하려면 `prefixSeparator` 값을 `/[0-9]{4}-[0-9]{2}-[0-9]{2}-/g`로 지정합니다. 결과는 `hello`입니다.
 
