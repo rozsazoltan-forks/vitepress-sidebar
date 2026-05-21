@@ -53,15 +53,16 @@ export function getDateFromFrontmatter(filePath: string): string {
   return getValueFromFrontmatter<string>(filePath, 'date', '0001-01-01');
 }
 
-export function getDateFromFile(filePath: string): number {
+export function getDateFromFile(filePath: string, modifyDate = false): number {
   try {
     const fileStats = statSync(filePath);
+    const currentTime = modifyDate ? fileStats.mtime : fileStats.ctime;
 
-    if (!fileStats.mtime) {
+    if (!currentTime) {
       return 0;
     }
 
-    return Math.floor(new Date(fileStats.mtime).getTime() / 1000);
+    return Math.floor(new Date(currentTime).getTime() / 1000);
   } catch {
     return 0;
   }

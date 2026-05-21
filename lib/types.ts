@@ -20,6 +20,7 @@ export declare interface VitePressSidebarOptions {
   folderLinkNotIncludesFileName?: boolean;
   includeEmptyFolder?: boolean;
   sortMenusByName?: boolean;
+  sortMenusByFileCreateDate?: boolean;
   sortMenusByFileModifyDate?: boolean;
   sortMenusByFrontmatterOrder?: boolean;
   sortMenusByFrontmatterDate?: boolean;

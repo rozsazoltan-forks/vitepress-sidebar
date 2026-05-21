@@ -84,6 +84,7 @@ export default defineConfig(
     // sortMenusByFileDatePrefix: false,
     // sortMenusByFrontmatterOrder: false,
     // frontmatterOrderDefaultValue: 0,
+    // sortMenusByFileCreateDate: false,
     // sortMenusByFileModifyDate: false,
     // sortMenusByFrontmatterDate: false,
     // sortMenusOrderByDescending: false,

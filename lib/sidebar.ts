@@ -206,9 +206,14 @@ function generateSidebarItem(
                   date: getDateFromFrontmatter(childItemPath)
                 }
               : {}),
-            ...(options.sortMenusByFileModifyDate
+            ...(options.sortMenusByFileCreateDate
               ? {
                   date: getDateFromFile(childItemPath)
+                }
+              : {}),
+            ...(options.sortMenusByFileModifyDate
+              ? {
+                  date: getDateFromFile(childItemPath, true)
                 }
               : {})
           };
@@ -244,9 +249,14 @@ function generateSidebarItem(
                 date: getDateFromFrontmatter(childItemPath)
               }
             : {}),
-          ...(options.sortMenusByFileModifyDate
+          ...(options.sortMenusByFileCreateDate
             ? {
                 date: getDateFromFile(childItemPath)
+              }
+            : {}),
+          ...(options.sortMenusByFileModifyDate
+            ? {
+                date: getDateFromFile(childItemPath, true)
               }
             : {})
         };
@@ -284,7 +294,11 @@ function generateSidebarItem(
     deepDeleteKey(sidebarItems, 'order');
   }
 
-  if (options.sortMenusByFrontmatterDate || options.sortMenusByFileModifyDate) {
+  if (
+    options.sortMenusByFrontmatterDate ||
+    options.sortMenusByFileCreateDate ||
+    options.sortMenusByFileModifyDate
+  ) {
     sidebarItems = sortByObjectKey({
       arr: sidebarItems,
       key: 'date',

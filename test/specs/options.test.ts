@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { describe, it } from 'node:test';
 import { generateSidebar } from '../../dist';
-import { utimes } from 'node:fs/promises';
+import { stat, utimes } from 'node:fs/promises';
 import { joinFilePath } from 'qsu/node';
 import { platform } from 'node:os';
 
@@ -881,6 +881,35 @@ describe('Test: APIs', () => {
     );
   });
 
+  it('API: sortMenusByFileCreateDate', async () => {
+    const targetDir = `${TEST_DIR_BASE}/modify-date`;
+
+    assert.deepEqual(
+      generateSidebar({
+        documentRootPath: targetDir,
+        sortMenusByFileCreateDate: true
+      }),
+      [
+        {
+          text: 'aaa',
+          link: '/aaa'
+        },
+        {
+          text: 'bbb',
+          link: '/bbb'
+        },
+        {
+          text: 'ccc',
+          link: '/ccc'
+        },
+        {
+          text: 'ddd',
+          link: '/ddd'
+        }
+      ]
+    );
+  });
+
   it('API: sortMenusByFileModifyDate', async () => {
     const targetDir = `${TEST_DIR_BASE}/modify-date`;
     const files = ['ddd.md', 'aaa.md', 'ccc.md', 'bbb.md'];
@@ -888,13 +917,11 @@ describe('Test: APIs', () => {
     let minute = 10;
 
     for (const file of files) {
+      const filePath = joinFilePath(platform() === 'win32', process.cwd(), targetDir, file);
+      const { atime } = await stat(filePath);
       const newDate = new Date(`2026-01-01T10:${minute}:00`);
 
-      await utimes(
-        joinFilePath(platform() === 'win32', process.cwd(), targetDir, file),
-        newDate,
-        newDate
-      );
+      await utimes(filePath, atime, newDate);
       minute += 1;
     }
 

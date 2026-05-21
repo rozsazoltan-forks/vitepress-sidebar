@@ -206,6 +206,13 @@ name: 이 것은 Frontmatter의 제목값입니다.
 
 Frontmatter의 `order` 속성을 기준으로 메뉴 항목을 정렬합니다. 각 폴더에 대해 `order` 속성의 값(숫자)을 오름차순으로 정렬하거나, `sortMenusOrderByDescending` 옵션이 `true`인 경우 내림차순으로 정렬합니다. `order` 값이 숫자가 아니거나 존재하지 않는 경우 `order`는 `0`으로 판단됩니다.
 
+## `sortMenusByFileCreateDate`
+
+- Type: `boolean`
+- Default: `false`
+
+파일의 생성 날짜 속성을 기준으로 메뉴 항목을 정렬합니다. (`sortMenusOrderByDescending` 옵션이 `true`인 경우 내림차순).
+
 ## `sortMenusByFileModifyDate`
 
 - Type: `boolean`

@@ -206,6 +206,13 @@ name: This is frontmatter title value.
 
 按 frontmatter 的 `order` 属性对菜单项排序。对于每个文件夹，按 `order` 属性的值（数字）升序排序，如果 `sortMenusOrderByDescending` 选项为 `true`，则按降序排序。如果 `order` 属性的值不是数字或不存在，则 `order` 会被判定为 `0`。
 
+## `sortMenusByFileCreateDate`
+
+- Type: `boolean`
+- Default: `false`
+
+根据文件的创建日期属性对菜单项进行排序。 (如果`sortMenusOrderByDescending`为`true`,则按日期降序).
+
 ## `sortMenusByFileModifyDate`
 
 - Type: `boolean`

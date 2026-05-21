@@ -206,12 +206,19 @@ The default menu items are sorted in folder tree order, so set the `sortMenusByN
 
 Sorts the menu items by the `order` property of the frontmatter. For each folder, sorts the value (number) of the `order` property in ascending order, or descending order if the `sortMenusOrderByDescending` option is `true`. If the value of `order` is non-numeric or does not exist, `order` is judged to be `0`.
 
+## `sortMenusByFileCreateDate`
+
+- Type: `boolean`
+- Default: `false`
+
+Sort the menu items by the file's creation date. (or descending order if the `sortMenusOrderByDescending` option is `true`).
+
 ## `sortMenusByFileModifyDate`
 
 - Type: `boolean`
 - Default: `false`
 
-Sort menu items by the file's modification date. (or descending order if the `sortMenusOrderByDescending` option is `true`) .
+Sort menu items by the file's modification date. (or descending order if the `sortMenusOrderByDescending` option is `true`).
 
 ## `sortMenusByFrontmatterDate`
 
