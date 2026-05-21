@@ -201,7 +201,7 @@ export function getTitleFromMd(
         }
       }
     } catch {
-      return 'Unknown';
+      // Do nothing
     }
   }
 
@@ -314,7 +314,9 @@ export function removePrefixFromTitleAndLink(
         ) {
           const splitItem = obj[key].split(options.prefixSeparator);
 
-          splitItem.shift();
+          if (splitItem.length > 1) {
+            splitItem.shift();
+          }
 
           obj[key] = splitItem.join(options.prefixSeparator);
         }
