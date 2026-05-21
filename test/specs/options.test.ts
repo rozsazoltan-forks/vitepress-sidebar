@@ -1421,11 +1421,38 @@ describe('Test: APIs', () => {
       }),
       [
         {
-          text: '1-Abc-Def',
+          text: '1-abc-def',
           link: '/1-abc-def'
         },
         {
-          text: 'A Hello World Abc-Def',
+          text: 'A Hello World Abc-def',
+          link: '/2'
+        },
+        {
+          text: 'Abc1def2g',
+          link: '/abc1def2g'
+        }
+      ]
+    );
+  });
+
+  it('API: capitalizeEachWords (C)', () => {
+    assert.deepEqual(
+      generateSidebar({
+        documentRootPath: `${TEST_DIR_BASE}/capitalize`,
+        capitalizeEachWords: true,
+        removePrefixAfterOrdering: true,
+        prefixSeparator: /[0-9]+-/g,
+        hyphenToSpace: true,
+        debugPrint: true
+      }),
+      [
+        {
+          text: 'Abc Def',
+          link: '/1-abc-def'
+        },
+        {
+          text: '2',
           link: '/2'
         },
         {
@@ -1602,7 +1629,6 @@ describe('Test: APIs', () => {
   it('API: excludeByFolderDepth (B)', () => {
     assert.deepEqual(
       generateSidebar({
-        debugPrint: true,
         documentRootPath: `${TEST_DIR_BASE}/recursive`,
         excludeByFolderDepth: 5
       }),

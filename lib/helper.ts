@@ -2,7 +2,7 @@
 // Defaults to defaultValue
 import { readFileSync } from 'fs';
 import matter from 'gray-matter';
-import { capitalizeFirst } from 'qsu';
+import { capitalizeEachWords, capitalizeFirst } from 'qsu';
 import type {
   AnyValueObject,
   SidebarItem,
@@ -73,7 +73,25 @@ export function formatTitle(
   const h1Headers: string[] = [];
   const htmlPlaceholder = '\u0001';
   const h1Placeholder = '\u0002';
-  let text = title;
+  let text: string = title;
+  let prefixString: string | undefined;
+  let textWithoutPrefix: string | undefined;
+
+  // Ignore prefix string before format title
+  if (options.removePrefixAfterOrdering && options.prefixSeparator) {
+    const textSplit = title.split(options.prefixSeparator);
+
+    if (textSplit.length > 1) {
+      prefixString =
+        options.prefixSeparator instanceof RegExp
+          ? (title.match(options.prefixSeparator)?.at(0) ?? '')
+          : (textSplit.shift() ?? '');
+
+      textWithoutPrefix = text.replace(prefixString, '');
+    }
+  }
+
+  text = textWithoutPrefix ?? text;
 
   // Replace HTML tags and Markdown h1 headers with placeholders
   text = text.replace(/<[^>]*>/g, (match) => {
@@ -101,23 +119,17 @@ export function formatTitle(
     text = text.replace(/_/g, ' ');
   }
   if (options.capitalizeEachWords) {
-    let lastChar = '';
-
-    for (let i = 0; i < text.length; i += 1) {
-      if ((i === 0 || !/[a-zA-Z0-9]/.test(lastChar)) && /[a-z]/.test(text[i])) {
-        text = text.slice(0, i) + text[i].toUpperCase() + text.slice(i + 1);
-      }
-
-      lastChar = text[i];
-    }
+    text = capitalizeEachWords(text);
   } else if (options.capitalizeFirst) {
     text = capitalizeFirst(text);
   }
+
   // Replace text [END]
 
   // Restore Markdown headers and HTML tags
   let h1Index = -1;
   let htmlIndex = -1;
+
   text = text.replace(new RegExp(h1Placeholder, 'g'), () => {
     h1Index += 1;
     return h1Headers[h1Index];
@@ -126,6 +138,10 @@ export function formatTitle(
     htmlIndex += 1;
     return htmlTags[htmlIndex];
   });
+
+  if (prefixString) {
+    text = `${prefixString}${text}`;
+  }
 
   return text;
 }
