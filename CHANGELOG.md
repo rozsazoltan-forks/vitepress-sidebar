@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.35.0 (2026-05-22)
+
+- HMR is now supported so that the sidebar automatically refreshes when documents are added or updated in the development environment. (You must use `withSidebar`) (#159)
+
 ## 1.34.0 (2026-05-21)
 
 - Fix the `capitalize` option behaves in such a way that it ignores the prefix (#231)
