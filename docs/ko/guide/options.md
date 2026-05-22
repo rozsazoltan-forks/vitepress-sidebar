@@ -41,6 +41,8 @@ order: 2
 | [sortMenusByFileDatePrefix](#sortmenusbyfiledateprefix) |  |
 | [sortMenusByFrontmatterOrder](#sortmenusbyfrontmatterorder) |  |
 | [frontmatterOrderDefaultValue](#frontmatterorderdefaultvalue) |  |
+| [sortMenusByFileCreateDate](#sortmenusbyfilecreatedate) |  |
+| [sortMenusByFileModifyDate](#sortmenusbyfilemodifydate) |  |
 | [sortMenusByFrontmatterDate](#sortmenusbyfrontmatterdate) |  |
 | [sortMenusOrderByDescending](#sortmenusorderbydescending) |  |
 | [sortMenusOrderNumericallyFromTitle](#sortmenusordernumericallyfromtitle) |  |

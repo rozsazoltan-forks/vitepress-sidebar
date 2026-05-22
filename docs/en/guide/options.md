@@ -41,6 +41,9 @@ This page describes all the options in the VitePress Sidebar.
 | [sortMenusByFileDatePrefix](#sortmenusbyfiledateprefix) |  |
 | [sortMenusByFrontmatterOrder](#sortmenusbyfrontmatterorder) |  |
 | [frontmatterOrderDefaultValue](#frontmatterorderdefaultvalue) |  |
+| [frontmatterOrderDefaultValue](#frontmatterorderdefaultvalue) |  |
+| [sortMenusByFileCreateDate](#sortmenusbyfilecreatedate) |  |
+| [sortMenusByFileModifyDate](#sortmenusbyfilemodifydate) |  |
 | [sortMenusByFrontmatterDate](#sortmenusbyfrontmatterdate) |  |
 | [sortMenusOrderByDescending](#sortmenusorderbydescending) |  |
 | [sortMenusOrderNumericallyFromTitle](#sortmenusordernumericallyfromtitle) |  |
