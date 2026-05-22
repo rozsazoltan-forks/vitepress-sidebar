@@ -43,6 +43,7 @@ export default defineConfig(
     // ============ [ GROUPING ] ============
     // collapsed: false,
     // collapseDepth: 2,
+    // collapseFromLevel: 1,
     // rootGroupText: 'Contents',
     // rootGroupLink: 'https://github.com/jooy2',
     // rootGroupCollapsed: false,
