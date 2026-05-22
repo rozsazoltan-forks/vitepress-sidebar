@@ -379,6 +379,67 @@ describe('Test: APIs', () => {
     );
   });
 
+  it('API: collapseFromLevel', () => {
+    assert.deepEqual(
+      generateSidebar({
+        documentRootPath: `${TEST_DIR_BASE}/general`,
+        collapsed: true,
+        collapseDepth: 2,
+        collapseFromLevel: 2
+      }),
+      [
+        {
+          text: 'a',
+          link: '/a'
+        },
+        {
+          text: 'b',
+          link: '/b'
+        },
+        {
+          text: 'c',
+          link: '/c'
+        },
+        {
+          text: 'folder',
+          items: [
+            {
+              text: 'folder-test-2',
+              link: '/folder/folder-test-2'
+            },
+            {
+              text: 'folder-test',
+              link: '/folder/folder-test'
+            },
+            {
+              text: 'subFolder',
+              items: [
+                {
+                  text: 'sub-folder-test',
+                  link: '/folder/subFolder/sub-folder-test'
+                }
+              ],
+              collapsed: true
+            }
+          ]
+        },
+        {
+          text: 'folder-2',
+          items: [
+            {
+              text: 'folder2',
+              link: '/folder-2/folder2'
+            }
+          ]
+        },
+        {
+          text: 'test',
+          link: '/test'
+        }
+      ]
+    );
+  });
+
   it('API: manualSortFileNameByPriority', () => {
     assert.deepEqual(
       generateSidebar({

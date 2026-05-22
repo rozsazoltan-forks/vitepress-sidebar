@@ -12,9 +12,10 @@ order: 2
 | ------------------------------------- | ----------------------------------------- |
 | [documentRootPath](#documentrootpath) | [collapsed](#collapsed)                   |
 | [scanStartPath](#scanstartpath)       | [collapseDepth](#collapsedepth)           |
-| [resolvePath](#resolvepath)           | [rootGroupText](#rootgrouptext)           |
-| [basePath](#basepath)                 | [rootGroupLink](#rootgrouplink)           |
-| [followSymlinks](#followsymlinks)     | [rootGroupCollapsed](#rootgroupcollapsed) |
+| [resolvePath](#resolvepath)           | [collapseFromLevel](#collapsefromlevel)   |
+| [basePath](#basepath)                 | [rootGroupText](#rootgrouptext)           |
+| [followSymlinks](#followsymlinks)     | [rootGroupLink](#rootgrouplink)           |
+|                                       | [rootGroupCollapsed](#rootgroupcollapsed) |
 
 | 获取菜单标题 | 获取菜单链接 |
 | --- | --- |
@@ -280,6 +281,15 @@ name: This is frontmatter title value.
 - Default: `1`
 
 在指定的深度，菜单组会折叠。指定该选项后，组的折叠/展开将自动启用。顶层文件夹的深度为 `1`。
+
+## `collapseFromLevel`
+
+- Type: `number`
+- Default: `undefined`
+
+指定应显示图标菜单以实现折叠或展开操作的最小层级深度。深度小于此值的文件夹将始终以展开状态显示且不显示箭头，同时将忽略 `collapsed` 属性。此选项必须与 `collapsed` 选项配合使用，实际的折叠/展开状态由 `collapseDepth` 决定。顶级文件夹的层级深度为 `1`。
+
+例如，设置 `{ collapsed: true, collapseDepth: 3, collapseFromLevel: 2 }` 会导致一级文件夹始终显示为无箭头的展开状态，二级文件夹处于展开且可折叠状态，而三级及更深层级的文件夹则初始为折叠状态。
 
 ## `hyphenToSpace`
 

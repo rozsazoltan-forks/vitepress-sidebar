@@ -5,6 +5,7 @@ export declare interface VitePressSidebarOptions {
   basePath?: string;
   collapsed?: boolean | null | undefined;
   collapseDepth?: number;
+  collapseFromLevel?: number;
   hyphenToSpace?: boolean;
   underscoreToSpace?: boolean;
   capitalizeFirst?: boolean;

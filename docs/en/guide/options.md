@@ -12,9 +12,10 @@ This page describes all the options in the VitePress Sidebar.
 | ------------------------------------- | ----------------------------------------- |
 | [documentRootPath](#documentrootpath) | [collapsed](#collapsed)                   |
 | [scanStartPath](#scanstartpath)       | [collapseDepth](#collapsedepth)           |
-| [resolvePath](#resolvepath)           | [rootGroupText](#rootgrouptext)           |
-| [basePath](#basepath)                 | [rootGroupLink](#rootgrouplink)           |
-| [followSymlinks](#followsymlinks)     | [rootGroupCollapsed](#rootgroupcollapsed) |
+| [resolvePath](#resolvepath)           | [collapseFromLevel](#collapsefromlevel)   |
+| [basePath](#basepath)                 | [rootGroupText](#rootgrouptext)           |
+| [followSymlinks](#followsymlinks)     | [rootGroupLink](#rootgrouplink)           |
+|                                       | [rootGroupCollapsed](#rootgroupcollapsed) |
 
 | Getting Menu Title | Getting Menu Link |
 | --- | --- |
@@ -281,6 +282,15 @@ If the `collapsed` option is not specified(`null` or `undefined`), group collaps
 - Default: `1`
 
 At the specified depth, the menu group is made collapsed. When this option is specified, group collapsing/expanding is automatically enabled. The depth of the top-level folder is `1`.
+
+## `collapseFromLevel`
+
+- Type: `number`
+- Default: `undefined`
+
+Specifies the minimum depth at which the icon menu should be displayed so that groups can be collapsed or expanded. Folders at depths lower than this value will always be displayed in an expanded state without arrows, and the `collapsed` attribute will be ignored. This option must be used in conjunction with the `collapsed` option, and the actual collapsed/expanded state is determined by `collapseDepth`. The depth of the top-level folder is `1`.
+
+For example, setting `{ collapsed: true, collapseDepth: 3, collapseFromLevel: 2 }` causes first-level folders to be displayed permanently without arrows, second-level folders to be expanded and collapsible, and third-level and deeper folders to start in a collapsed state.
 
 ## `hyphenToSpace`
 

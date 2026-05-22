@@ -191,7 +191,8 @@ function generateSidebarItem(
             ...(directorySidebarItems.length > 0 ? { items: directorySidebarItems } : {}),
             ...(options.collapsed === null ||
             options.collapsed === undefined ||
-            directorySidebarItems.length < 1
+            directorySidebarItems.length < 1 ||
+            (typeof options.collapseFromLevel === 'number' && depth < options.collapseFromLevel)
               ? {}
               : { collapsed: depth >= options.collapseDepth! && options.collapsed }),
             ...(options.sortMenusByFrontmatterOrder
