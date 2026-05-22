@@ -7,6 +7,9 @@ Thumbs.db
 .idea/
 .vscode/
 
+# AIs
+.claude/
+
 # Project files
 lib/
 test/
