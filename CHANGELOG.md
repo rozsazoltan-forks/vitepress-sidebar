@@ -1,10 +1,18 @@
 # Changelog
 
+## 1.36.1 (2026-05-22)
+
+- Fixed execution issues in versions `1.35.0` through `1.36.0`
+
 ## 1.36.0 (2026-05-22)
+
+NOTE: This version is broken. Please use `1.36.1` or later.
 
 - Add `collapseFromLevel` option (#225)
 
 ## 1.35.0 (2026-05-22)
+
+NOTE: This version is broken. Please use `1.36.1` or later.
 
 - HMR is now supported so that the sidebar automatically refreshes when documents are added or updated in the development environment. (You must use `withSidebar`) (#159)
 
