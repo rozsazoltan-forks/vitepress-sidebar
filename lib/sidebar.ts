@@ -17,6 +17,7 @@ import {
   sortByFileTypes,
   sortByObjectKey
 } from './helper.js';
+import { createSidebarHmrPlugin } from './external';
 
 function generateSidebarItem(
   depth: number,
@@ -519,6 +520,15 @@ export function withSidebar(
   }
 
   const result: Partial<UserConfig> = objMergeNewKey(vitePressOptions, sidebarResult) as UserConfig;
+
+  // Inject a Vite plugin that restarts the dev server when Markdown files
+  // are added or removed inside any `documentRootPath`. This allows the
+  // sidebar to refresh in dev mode without manually restarting the server.
+  const hmrPlugin = createSidebarHmrPlugin(sidebarOptions);
+  const viteConfig = (result.vite ?? {}) as { plugins?: unknown[] };
+
+  viteConfig.plugins = [...(viteConfig.plugins ?? []), hmrPlugin];
+  result.vite = viteConfig as UserConfig['vite'];
 
   if (enableDebugPrint) {
     debugPrint(sidebarOptions, result);

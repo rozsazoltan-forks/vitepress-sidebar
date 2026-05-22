@@ -27,7 +27,7 @@ $ pnpm i -D vitepress-sidebar
 
 ## How it works
 
-VitePress Sidebar scans your folders and markdown files hierarchically based on the folder path (`documentRootPath`) you specify in your project's folders.
+VitePress Sidebar scans your folders and Markdown files hierarchically based on the folder path (`documentRootPath`) you specify in your project's folders.
 
 It will then exclude, sort, and format certain files based on your settings to read the titles of the sidebar menus, and finally output the settings data according to the sidebar specs required by VitePress.
 
@@ -54,7 +54,7 @@ This eliminates the need for manual creation for each menu in the `sidebar`.
 
 ## How to use
 
-VitePress Sidebar can automatically generate sidebars with two functions: `withSidebar` and `generateSidebar`. They have the same behavior, but where to use the functions is different. In general, we recommend using `withSidebar`.
+VitePress Sidebar can automatically generate sidebars with two functions: `withSidebar` and `generateSidebar`. In general, we recommend using `withSidebar`, which supports hot reloading and is the standard approach.
 
 To import the modules you installed into your code, open VitePress's `config.js` file. Note that this file is located in the `.vitepress` directory and may have a different extension depending on your project.
 
@@ -91,6 +91,8 @@ export default defineConfig(withSidebar(vitePressOptions, vitePressSidebarOption
 ### 2. Using `generateSidebar`
 
 `generateSidebar` is available at the `themeConfig.sidebar` level. This can be used when code separation is needed for more detailed `themeConfig` settings.
+
+Unless there are special circumstances, we recommend using `withSidebar`. With `generateSidebar`, the sidebar will not update immediately when documents are added or deleted unless the server is restarted.
 
 ```javascript
 // `.vitepress/config.js`

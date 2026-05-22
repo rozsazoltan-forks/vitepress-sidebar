@@ -54,7 +54,7 @@ export default {
 
 ## 如何使用
 
-VitePress Sidebar 可通过两个函数自动生成侧边栏：`withSidebar` 和 `generateSidebar`。它们的行为相同，但在何处使用这两个函数却不同。一般来说，我们建议使用`withSidebar`。
+VitePress Sidebar 可通过两个函数自动生成侧边栏：`withSidebar` 和 `generateSidebar`。通常，我们建议使用 `withSidebar`，它支持热重载，也是标准做法。
 
 要将安装的模块导入代码，请打开VitePress的`config.js`文件。请注意，该文件位于`.vitepress`目录下，扩展名可能有所不同，具体取决于您的项目。
 
@@ -91,6 +91,8 @@ export default defineConfig(withSidebar(vitePressOptions, vitePressSidebarOption
 ### 2. 使用 `generateSidebar`
 
 `generateSidebar` 在`themeConfig.sidebar`级别可用。当需要对更详细的 `themeConfig` 设置进行代码分离时，可以使用此功能。
+
+除非有特殊情况，否则我们建议使用 `withSidebar`。使用 `generateSidebar` 时，除非重启服务器，否则在添加或删除文档后，侧边栏不会立即更新。
 
 ```javascript
 // `.vitepress/config.js`

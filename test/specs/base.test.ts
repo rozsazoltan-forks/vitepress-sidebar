@@ -194,88 +194,97 @@ describe('Test: base test', () => {
   });
 
   it('withSidebar: basic', () => {
-    assert.deepStrictEqual(
-      withSidebar(
-        {
-          title: 'VitePress Sidebar',
-          themeConfig: {
-            sidebar: [
-              {
-                text: 'Not used',
-                link: '/'
-              }
-            ],
-            logo: { src: '/logo.png' },
-            footer: {
-              message: 'Footer'
-            }
-          }
-        },
-        {
-          documentRootPath: `${TEST_DIR_BASE}/general`
-        }
-      ),
+    const result = withSidebar(
       {
         title: 'VitePress Sidebar',
         themeConfig: {
           sidebar: [
             {
-              text: 'a',
-              link: '/a'
-            },
-            {
-              text: 'b',
-              link: '/b'
-            },
-            {
-              text: 'c',
-              link: '/c'
-            },
-            {
-              text: 'folder',
-              items: [
-                {
-                  text: 'folder-test-2',
-                  link: '/folder/folder-test-2'
-                },
-                {
-                  text: 'folder-test',
-                  link: '/folder/folder-test'
-                },
-                {
-                  text: 'subFolder',
-                  items: [
-                    {
-                      text: 'sub-folder-test',
-                      link: '/folder/subFolder/sub-folder-test'
-                    }
-                  ]
-                }
-              ]
-            },
-            {
-              text: 'folder-2',
-              items: [
-                {
-                  text: 'folder2',
-                  link: '/folder-2/folder2'
-                }
-              ]
-            },
-            {
-              text: 'test',
-              link: '/test'
+              text: 'Not used',
+              link: '/'
             }
           ],
-          logo: {
-            src: '/logo.png'
-          },
+          logo: { src: '/logo.png' },
           footer: {
             message: 'Footer'
           }
         }
+      },
+      {
+        documentRootPath: `${TEST_DIR_BASE}/general`
       }
     );
+
+    // `withSidebar` injects a Vite plugin for dev-server HMR; verify it's
+    // present and then strip it so the rest of the config can be compared
+    // by structural equality.
+    const vitePlugins = (result.vite as { plugins?: { name?: string }[] } | undefined)?.plugins;
+    assert.ok(
+      vitePlugins?.some((p) => p?.name === 'vitepress-sidebar:hmr'),
+      'expected hmr plugin to be injected into vite.plugins'
+    );
+    delete (result as { vite?: unknown }).vite;
+
+    assert.deepStrictEqual(result, {
+      title: 'VitePress Sidebar',
+      themeConfig: {
+        sidebar: [
+          {
+            text: 'a',
+            link: '/a'
+          },
+          {
+            text: 'b',
+            link: '/b'
+          },
+          {
+            text: 'c',
+            link: '/c'
+          },
+          {
+            text: 'folder',
+            items: [
+              {
+                text: 'folder-test-2',
+                link: '/folder/folder-test-2'
+              },
+              {
+                text: 'folder-test',
+                link: '/folder/folder-test'
+              },
+              {
+                text: 'subFolder',
+                items: [
+                  {
+                    text: 'sub-folder-test',
+                    link: '/folder/subFolder/sub-folder-test'
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            text: 'folder-2',
+            items: [
+              {
+                text: 'folder2',
+                link: '/folder-2/folder2'
+              }
+            ]
+          },
+          {
+            text: 'test',
+            link: '/test'
+          }
+        ],
+        logo: {
+          src: '/logo.png'
+        },
+        footer: {
+          message: 'Footer'
+        }
+      }
+    });
   });
 
   it('Contains a path with the same name as `documentRootPath`', () => {

@@ -54,7 +54,7 @@ export default {
 
 ## 사용 방법
 
-VitePress Sidebar는 `withSidebar`와 `generateSidebar` 두가지 함수로 사이드 바를 자동으로 생성할 수 있습니다. 이 둘의 동작은 같지만 함수를 사용하는 위치가 다릅니다. 일반적으로는 `withSidebar`를 사용하는 것을 권장합니다.
+VitePress Sidebar는 `withSidebar`와 `generateSidebar` 두가지 함수로 사이드 바를 자동으로 생성할 수 있습니다. 이 둘의 동작은 같지만 함수를 사용하는 위치가 다릅니다. 일반적으로는 핫 리로드를 지원하고 정석적인 방법인 `withSidebar`를 사용하는 것을 권장합니다.
 
 설치한 모듈을 코드에 가져오려면 VitePress의 `config.js` 파일을 엽니다. 이 파일은 `.vitepress` 디렉토리에 위치하며 프로젝트에 따라 다른 확장자의 이름일 수 있으니 유의하시기 바랍니다.
 
@@ -91,6 +91,8 @@ export default defineConfig(withSidebar(vitePressOptions, vitePressSidebarOption
 ### 2. `generateSidebar` 사용
 
 `generateSidebar`는 `themeConfig.sidebar` 레벨에서 사용할 수 있습니다. 이는 좀 더 세부적인 `themeConfig` 설정을 위해 코드 분리가 필요할 때 사용할 수 있습니다.
+
+특수한 경우가 아닌 경우는 `withSidebar`를 사용하는 것을 권장합니다. `generateSidebar`는 문서가 추가 또는 삭제되면 서버를 재시작하지 않는 이상 즉시 사이드바가 업데이트되지 않습니다.
 
 ```javascript
 // `.vitepress/config.js`
