@@ -17,7 +17,7 @@ import {
   sortByFileTypes,
   sortByObjectKey
 } from './helper.js';
-import { createSidebarHmrPlugin } from './external';
+import { createSidebarHmrPlugin } from './external.js';
 
 function generateSidebarItem(
   depth: number,

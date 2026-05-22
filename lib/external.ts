@@ -1,4 +1,4 @@
-import type { VitePressSidebarOptions } from './types';
+import type { VitePressSidebarOptions } from './types.ts';
 import { join, sep } from 'path';
 import { utimesSync } from 'fs';
 
