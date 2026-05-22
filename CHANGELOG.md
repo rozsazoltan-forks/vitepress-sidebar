@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.36.0 (2026-05-22)
+
+- Add `collapseFromLevel` option (#225)
+
 ## 1.35.0 (2026-05-22)
 
 - HMR is now supported so that the sidebar automatically refreshes when documents are added or updated in the development environment. (You must use `withSidebar`) (#159)
